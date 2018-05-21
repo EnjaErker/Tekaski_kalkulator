@@ -1,7 +1,3 @@
-[LineNumbers]
-enable=1
-enable_shell=0
-visible=True
 
 
 
@@ -35,28 +31,49 @@ def obrestna_mera(ponudnik):
 import tkinter as tk
 
 okno = tk.Tk()
-zgoraj = tk.Frame(okno)
-spodaj = tk.Frame(okno)
-zgoraj.pack()
-spodaj.pack()
-tk.Label(zgoraj, text='PROGRAM ZA NAČRTOVANJE VARČEVANJA').pack()
-tk.Button(spodaj, text='VSTOPI', command=odpri_novo_okno).pack()
+
+tk.Label(text='PROGRAM ZA NAČRTOVANJE VARČEVANJA').grid(row=0)
+tk.Button(text='VSTOPI', command=odpri_novo_okno).grid(row=1)
 
 
 okno.mainloop()
 
 def odpri_novo_okno():
-    okno2 = tk.Tk
-    zgoraj = tk.Frame(okno)
-    srednje = tk.Frame(okno)
-    spodaj = tk.Frame(okno)
-    zgoraj.pack()
-    srednje.pack()
-    spodaj.pack()
-    tk.Button(srednje, text='IZRAČUNAJ', command=izracunaj).pack()
-    #v zgornji frame uporabnik vstavi podatke
-    #v srednjem framu lezi gumb preko katerega pozenemo program
-    #v spodnjem framu se prikaze izracunana vrednost glede na njegove podatke
+    okno2 = tk.Tk()
+
+    zgoraj = tk.Frame(okno2)
+    spodaj = tk.Frame(okno2)
+    zgoraj.grid(row=0)
+    spodaj.grid(row=1)
+    
+    tk.Label(zgoraj, text='Uvodni tekst').pack()
+    
+    tk.Label(spodaj, text='Starost: ').grid(row=0, column=1)
+    tk.Entry(spodaj).grid(row=0, column=2)
+
+    tk.Label(spodaj, text='Število delovnih let: ').grid(row=1, column=1)
+    tk.Entry(spodaj).grid(row=1, column=2)
+    
+    tk.Label(spodaj, text='Letna vložena vsota v €: ').grid(row=2, column=1)
+    tk.Entry(spodaj).grid(row=2, column=2)
+
+    tk.Label(spodaj, text='Ponudnik: ').grid(row=3, column=1)
+    root = Tk()
+    tkvar = StringVar(root)
+    izbire = {'Pokojninska druzba A',
+              'Skupna pokojninska družba',
+              'Moja naložba',
+              'Zavarovalnica Triglav',
+              'Adriatic Slovenica',
+              'Zavarovalnica Generali',
+              'Banka Koper'}
+    tkvar.set('Pokojninska družba A')
+    popupMenu = OptionMenu(spodaj, tkvar, *izbire)
+    popupMenu.grid(row=3, column=2)
+
+    tk.Button(spodaj, text='IZRAČUNAJ', command=izracunaj).grid(row=4)
+    
+    okno2.mainloop()
     
 def izracunaj():
     starost
