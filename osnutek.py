@@ -1,4 +1,5 @@
-
+#nalozi git
+in tortoise git
 
 
 #izracun:
